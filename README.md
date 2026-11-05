@@ -47,6 +47,8 @@ Pendiente (mejoras futuras):
 - Flujo completo para: alergias, medicamentos, consultas, signos vitales, diagnósticos, tratamientos, prescripciones, historia clínica y alergias del paciente (hoy solo existen como clases del dominio; alergias y medicamentos tienen además sus interfaces)
 - Persistencia en base de datos
 
+<img width="1646" height="867" alt="menu" src="https://github.com/user-attachments/assets/6d523c99-feaf-4403-a2a6-5db87e266e3c" />
+
 ## Estructura del proyecto
 
 ```
