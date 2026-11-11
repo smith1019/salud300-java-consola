@@ -1,13 +1,17 @@
 package app;
 
-import app.repository.AppointmentRepositoryImpl;
-import app.repository.PatientRepositoryImpl;
-import app.repository.ProfessionalRepositoryImpl;
-import app.repository.SpecialtyRepositoryImpl;
+import app.repository.AppointmentRepositoryJdbc;
+import app.repository.PatientRepositoryJdbc;
+import app.repository.ProfessionalRepositoryJdbc;
+import app.repository.SpecialtyRepositoryJdbc;
 import app.service.AppointmentServiceImpl;
 import app.service.PatientServiceImpl;
 import app.service.ProfessionalServiceImpl;
 import app.service.SpecialtyServiceImpl;
+import app.service.outputports.AppointmentRepositoryInterface;
+import app.service.outputports.PatientRepositoryInterface;
+import app.service.outputports.ProfessionalRepositoryInterface;
+import app.service.outputports.SpecialtyRepositoryInterface;
 import app.userinterface.AppUserInterface;
 import app.view.AppointmentView;
 import app.view.PatientView;
@@ -17,11 +21,12 @@ import app.view.SpecialtyView;
 public class Application {
 
     public static void main(String[] args) {
-        // Repositorios
-        SpecialtyRepositoryImpl specialtyRepository = new SpecialtyRepositoryImpl();
-        ProfessionalRepositoryImpl professionalRepository = new ProfessionalRepositoryImpl();
-        PatientRepositoryImpl patientRepository = new PatientRepositoryImpl();
-        AppointmentRepositoryImpl appointmentRepository = new AppointmentRepositoryImpl();
+        // Repositorios (ahora guardan en la base de datos MariaDB)
+        SpecialtyRepositoryInterface specialtyRepository = new SpecialtyRepositoryJdbc();
+        ProfessionalRepositoryInterface professionalRepository = new ProfessionalRepositoryJdbc();
+        PatientRepositoryInterface patientRepository = new PatientRepositoryJdbc();
+        AppointmentRepositoryInterface appointmentRepository =
+                new AppointmentRepositoryJdbc(patientRepository, professionalRepository);
 
         // Servicios
         SpecialtyServiceImpl specialtyService = new SpecialtyServiceImpl(specialtyRepository);

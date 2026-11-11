@@ -1,5 +1,6 @@
 package app.userinterface;
 
+import app.config.DatabaseException;
 import app.utils.FormRuleValidator;
 import app.view.AppointmentView;
 import app.view.PatientView;
@@ -40,37 +41,41 @@ public class AppUserInterface {
                     0. Salir
                     Seleccione una opción:""");
 
-            switch (option) {
-                case 1:
-                    specialtyView.createSpecialty();
-                    break;
-                case 2:
-                    specialtyView.showSpecialties();
-                    break;
-                case 3:
-                    professionalView.createProfessional();
-                    break;
-                case 4:
-                    professionalView.showProfessionals();
-                    break;
-                case 5:
-                    patientView.createPatient();
-                    break;
-                case 6:
-                    patientView.showPatients();
-                    break;
-                case 7:
-                    appointmentView.createAppointment();
-                    break;
-                case 8:
-                    appointmentView.showAppointments();
-                    break;
-                case 0:
-                    running = false;
-                    System.out.println("Hasta pronto.");
-                    break;
-                default:
-                    System.out.println("Opción inválida. Intente de nuevo.");
+            try {
+                switch (option) {
+                    case 1:
+                        specialtyView.createSpecialty();
+                        break;
+                    case 2:
+                        specialtyView.showSpecialties();
+                        break;
+                    case 3:
+                        professionalView.createProfessional();
+                        break;
+                    case 4:
+                        professionalView.showProfessionals();
+                        break;
+                    case 5:
+                        patientView.createPatient();
+                        break;
+                    case 6:
+                        patientView.showPatients();
+                        break;
+                    case 7:
+                        appointmentView.createAppointment();
+                        break;
+                    case 8:
+                        appointmentView.showAppointments();
+                        break;
+                    case 0:
+                        running = false;
+                        System.out.println("Hasta pronto.");
+                        break;
+                    default:
+                        System.out.println("Opción inválida. Intente de nuevo.");
+                }
+            } catch (DatabaseException e) {
+                System.out.println("Error de base de datos: " + e.getMessage());
             }
         }
     }
